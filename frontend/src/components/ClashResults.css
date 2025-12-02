@@ -1,0 +1,185 @@
+/* frontend/src/components/ClashResults.css */
+
+.clashes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.clash-card-modern {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.005)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.clash-card-modern:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Header with type badge */
+.clash-header {
+  padding: 12px 14px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.015),
+    rgba(255, 255, 255, 0.008)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.clash-badge {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-left: 3px solid;
+  padding-left: 10px;
+}
+
+.clash-type-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #e6eef8;
+}
+
+.clash-day {
+  font-size: 12px;
+  color: #98a0b3;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Entries layout */
+.clash-entries {
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.entry-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.entry-course {
+  font-weight: 700;
+  font-size: 14px;
+  color: #6ef0ff;
+  word-break: break-word;
+}
+
+.entry-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meta-label {
+  color: #98a0b3;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.meta-value {
+  color: #e6eef8;
+  font-family: ui-monospace, "Courier New", monospace;
+  font-size: 12px;
+}
+
+/* Conflict indicator in middle */
+.conflict-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  min-height: 80px;
+}
+
+.conflict-line {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(255, 107, 157, 0.5),
+    transparent
+  );
+}
+
+.conflict-icon {
+  font-size: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .clash-entries {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .conflict-indicator {
+    flex-direction: row;
+    min-height: auto;
+    gap: 8px;
+    padding: 4px 0;
+  }
+
+  .conflict-line {
+    width: 20px;
+    height: 1px;
+  }
+
+  .entry-meta-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+}
+
+/* Animation on mount */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.clash-card-modern {
+  animation: slideIn 0.3s ease;
+}
