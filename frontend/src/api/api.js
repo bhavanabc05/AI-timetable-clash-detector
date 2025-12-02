@@ -1,5 +1,3 @@
-// src/api/api.js
-
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000";
 
 export async function uploadTimetable(file) {
@@ -13,8 +11,8 @@ export async function uploadTimetable(file) {
 
   if (!res.ok) {
     const msg = await res.text();
-    throw new Error(msg);
+    throw new Error(msg || "Upload failed");
   }
 
-  return res.json(); // { success, totalEntries, clashes }
+  return res.json();
 }

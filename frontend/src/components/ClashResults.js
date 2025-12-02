@@ -1,28 +1,40 @@
 import React from "react";
 
 export default function ClashResults({ clashes }) {
-  if (!clashes) return null;
-
   return (
-    <div>
-      <h3>Detected Clashes</h3>
+    <div className="panel">
+      <div className="panel-header">
+        <h3>Detected Clashes</h3>
+        <div className="badge">{clashes ? clashes.length : 0}</div>
+      </div>
 
-      {clashes.length === 0 ? (
-        <p>No clashes 🎉</p>
-      ) : (
-        clashes.map((c, i) => (
-          <div key={i} style={{ padding: 8, marginBottom: 10, background: "#ffe9e9" }}>
-            <strong>{c.type}</strong>
-            <div>Day: {c.day}</div>
-
-            {c.entries.map((e, idx) => (
-              <div key={idx} style={{ marginLeft: 10 }}>
-                {e.course} — {e.teacher} — {e.start}-{e.end} (Room {e.room})
+      <div className="panel-body">
+        {!clashes || clashes.length === 0 ? (
+          <div className="no-clash">
+            <div className="sparkle">🎉</div>
+            <div>No clashes detected — nice!</div>
+          </div>
+        ) : (
+          <div className="clash-grid">
+            {clashes.map((c, idx) => (
+              <div key={idx} className="clash-card">
+                <div className="clash-type">{c.type}</div>
+                <div className="clash-day">Day: {c.day}</div>
+                <div className="entries">
+                  {c.entries.map((e, i) => (
+                    <div key={i} className="entry">
+                      <div className="course">{e.course}</div>
+                      <div className="meta">
+                        <span>{e.teacher}</span> • <span>Room {e.room}</span> • <span>{e.start}–{e.end}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
-        ))
-      )}
+        )}
+      </div>
     </div>
   );
 }
