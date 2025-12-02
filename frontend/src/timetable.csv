@@ -1,0 +1,9 @@
+course,teacher,year,room,day,start,end,resource
+Data Science,Ms. Priya,3,Lab-1,Monday,10:00,12:00,
+Machine Learning,Ms. Priya,3,Lab-2,Monday,11:00,13:00,
+Maths,Mr. Raj,1,A101,Tuesday,09:00,10:00,
+Physics,Mr. Raj,1,A101,Tuesday,09:30,11:00,
+Chemistry,Dr. Kumar,2,B201,Wednesday,14:00,16:00,
+Biology,Dr. Kumar,2,B201,Wednesday,15:00,17:00,
+English,Ms. Anita,1,C103,Thursday,08:00,09:00,
+History,Mr. Omar,3,D202,Friday,10:00,11:00
