@@ -5,7 +5,8 @@ module.exports = function parseCsv(buffer) {
     parse(
       buffer,
       {
-        columns: true,
+        // 1. Normalize headers to lowercase to handle "Day", "day", "DAY" etc.
+        columns: (header) => header.map((column) => column.trim().toLowerCase()), 
         trim: true,
         skip_empty_lines: true,
       },
@@ -14,6 +15,7 @@ module.exports = function parseCsv(buffer) {
 
         // Convert times to minutes for easier clash detection
         const formatted = records.map((r) => ({
+          // 2. Now access properties using lowercase keys safely
           course: r.course,
           teacher: r.teacher,
           year: r.year,
@@ -34,6 +36,7 @@ module.exports = function parseCsv(buffer) {
 };
 
 function convertToMinutes(time) {
+  if (!time) return 0; // Safety check
   const [h, m] = time.split(":");
   return parseInt(h) * 60 + parseInt(m);
 }

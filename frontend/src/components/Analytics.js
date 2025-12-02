@@ -1,8 +1,8 @@
 // frontend/src/components/Analytics.js
 import React, { useMemo } from "react";
 import {
-  BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+  BarChart, Bar, PieChart, Pie, Cell,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from "recharts";
 
 export default function Analytics({ clashes }) {
@@ -84,7 +84,6 @@ export default function Analytics({ clashes }) {
     // Clash severity calculation
     let high = 0, medium = 0, low = 0;
     clashes.forEach((c) => {
-      const clashCount = Object.values(teacherClashes).filter((x) => x >= 3).length;
       if (c.entries.length > 2) high++;
       else if (teacherClashes[c.entries[0].teacher] >= 2) medium++;
       else low++;
@@ -150,7 +149,7 @@ export default function Analytics({ clashes }) {
       <div className="charts-grid">
         {/* Clash by Type */}
         {metrics.clashByType.length > 0 && (
-          <ChartPanel title="Clashes by Type" fullWidth={false}>
+          <ChartPanel title="Clashes by Type">
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -178,7 +177,7 @@ export default function Analytics({ clashes }) {
 
         {/* Clashes by Day */}
         {metrics.clashByDay.length > 0 && (
-          <ChartPanel title="Clashes by Day" fullWidth={false}>
+          <ChartPanel title="Clashes by Day">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={metrics.clashByDay}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -196,18 +195,18 @@ export default function Analytics({ clashes }) {
           </ChartPanel>
         )}
 
-        {/* Busy Teachers */}
+        {/* Busy Teachers - REMOVED fullWidth={true} */}
         {metrics.busyTeachers.length > 0 && (
-          <ChartPanel title="Teachers with Most Clashes" fullWidth={true}>
+          <ChartPanel title="Teachers with Most Clashes">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 data={metrics.busyTeachers}
                 layout="vertical"
-                margin={{ top: 5, right: 30, left: 150, bottom: 5 }}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                 <XAxis type="number" stroke="#98a0b3" />
-                <YAxis dataKey="name" type="category" stroke="#98a0b3" width={140} />
+                <YAxis dataKey="name" type="category" stroke="#98a0b3" width={100} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: "rgba(15,23,32,0.95)",
@@ -220,14 +219,14 @@ export default function Analytics({ clashes }) {
           </ChartPanel>
         )}
 
-        {/* Busy Rooms */}
+        {/* Busy Rooms - REMOVED fullWidth={true} */}
         {metrics.busyRooms.length > 0 && (
-          <ChartPanel title="Most Booked Rooms" fullWidth={true}>
+          <ChartPanel title="Most Booked Rooms">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
                 data={metrics.busyRooms}
                 layout="vertical"
-                margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                 <XAxis type="number" stroke="#98a0b3" />
@@ -246,7 +245,7 @@ export default function Analytics({ clashes }) {
 
         {/* Clash by Year */}
         {metrics.busyYears.length > 0 && (
-          <ChartPanel title="Clashes by Year Level" fullWidth={false}>
+          <ChartPanel title="Clashes by Year Level">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={metrics.busyYears}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />

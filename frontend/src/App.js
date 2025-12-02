@@ -1,10 +1,13 @@
 // frontend/src/App.js
 import React, { useState, useCallback } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { uploadTimetable, fetchSuggestions } from "./api/api";
 import Header from "./components/Header";
-import UploadSection from "./components/sections/UploadSection";
-import ResultsSection from "./components/sections/ResultsSection";
-import AnalyticsSection from "./components/sections/AnalyticsSection";
+import Home from "./pages/Home";  
+import AnalyticsPage from "./pages/AnalyticsPage";         
+// import UploadSection from "./components/sections/UploadSection";
+// import ResultsSection from "./components/sections/ResultsSection";
+// import AnalyticsSection from "./components/sections/AnalyticsSection";
 import "./index.css";
 import "./App.css";
 
@@ -180,43 +183,45 @@ export default function App() {
   }, [reset]);
 
   return (
-    <div className="app">
-      {/* ========================================
-          HEADER: Branding & Status
-          ======================================== */}
-      <Header />
+    <Router>
+      <div className="app">
+        <Header />
+        
+        <main className="container" style={{ display: 'block' }}> 
+          {/* Overriding grid layout to allow full-width pages */}
+          
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <Home 
+                  onUpload={handleUpload}
+                  loading={loading}
+                  error={error}
+                  onReset={handleReset}
+                  clashes={clashes}
+                  suggestions={suggestions}
+                />
+              } 
+            />
+            
+            <Route 
+              path="/analytics" 
+              element={
+                <AnalyticsPage clashes={clashes}
+                 />
+                
+              } 
+            />
+          </Routes>
 
-      {/* ========================================
-          MAIN CONTENT: Two-column layout
-          ======================================== */}
-      <main className="container">
-        {/* LEFT COLUMN: Upload & Results */}
-        <div className="left">
-          {/* Upload Section with file input & error handling */}
-          <UploadSection
-            onUpload={handleUpload}
-            loading={loading}
-            error={error}
-            onReset={handleReset}
-          />
+        </main>
 
-          {/* Clash Results & AI Suggestions */}
-          <ResultsSection clashes={clashes} suggestions={suggestions} />
-        </div>
-
-        {/* RIGHT COLUMN: Analytics Dashboard */}
-        <div className="right">
-          <AnalyticsSection clashes={clashes} />
-        </div>
-      </main>
-
-      {/* ========================================
-          FOOTER: Credit & Info
-          ======================================== */}
-      <footer className="footer">
-        <div>Built with ⚡ AI vibes</div>
-        <div className="muted">Frontend • Backend integrated</div>
-      </footer>
-    </div>
+        <footer className="footer">
+          <div>Built with ⚡ AI vibes</div>
+          <div className="muted">Frontend • Backend integrated</div>
+        </footer>
+      </div>
+    </Router>
   );
 }
