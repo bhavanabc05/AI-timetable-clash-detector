@@ -218,8 +218,9 @@ export default function App() {
         </main>
 
         <footer className="footer">
-          <div>Built with ⚡ AI vibes</div>
-          <div className="muted">Frontend • Backend integrated</div>
+            <div className="muted">
+            © {new Date().getFullYear()} Timetable AI System • All Rights Reserved
+            </div>
         </footer>
       </div>
     </Router>
