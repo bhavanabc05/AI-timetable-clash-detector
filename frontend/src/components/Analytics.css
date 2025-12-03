@@ -211,9 +211,16 @@
    CHARTS GRID
    ============================================ */
 
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 16px;
+  grid-auto-rows: auto;
+}
+
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 16px;
   grid-auto-rows: auto;
 }
