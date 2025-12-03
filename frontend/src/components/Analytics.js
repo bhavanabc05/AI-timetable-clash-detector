@@ -364,7 +364,7 @@ export default function Analytics({ clashes }) {
         )}
 
         {/* Row 4: Full Width Charts */}
-        {metrics.busyTeachers.length > 0 && (
+        {/* {metrics.busyTeachers.length > 0 && (
           <ChartPanel title="Most Conflicted Teachers" icon="👨‍🏫" fullWidth={true}>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={metrics.busyTeachers} layout="vertical" margin={{ top: 5, right: 30, left: 150, bottom: 5 }}>
@@ -390,7 +390,7 @@ export default function Analytics({ clashes }) {
               </BarChart>
             </ResponsiveContainer>
           </ChartPanel>
-        )}
+        )} */}
       </div>
 
       {/* EMPTY STATE */}
