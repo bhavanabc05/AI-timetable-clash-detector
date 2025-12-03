@@ -1,0 +1,665 @@
+/* frontend/src/components/suggestions/SuggestionItem.css */
+
+/* ============================================
+   SUGGESTION ITEM - MAIN CONTAINER
+   ============================================ */
+
+.suggestion-item {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 3px solid;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: itemSlideIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes itemSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Priority-based left border color */
+.suggestion-item.priority-high {
+  border-left-color: #4de6a4;
+}
+
+.suggestion-item.priority-medium {
+  border-left-color: #ffa502;
+}
+
+.suggestion-item.priority-low {
+  border-left-color: #ff6b9d;
+}
+
+/* Hover state */
+.suggestion-item:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SUGGESTION HEADER (Always Visible)
+   ============================================ */
+
+.suggestion-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.suggestion-header:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.suggestion-header:focus {
+  outline: 2px solid #6ef0ff;
+  outline-offset: -2px;
+}
+
+.suggestion-header:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   CONFIDENCE INDICATOR
+   ============================================ */
+
+.confidence-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 60px;
+  padding: 8px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, currentColor, rgba(255, 255, 255, 0.1));
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.suggestion-header:hover .confidence-indicator {
+  transform: scale(1.05);
+}
+
+.confidence-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.confidence-percent {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ============================================
+   SUGGESTION MAIN CONTENT
+   ============================================ */
+
+.suggestion-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.suggestion-fix {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e6eef8;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.suggestion-issue {
+  font-size: 12px;
+  color: #98a0b3;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* ============================================
+   EXPAND/COLLAPSE TOGGLE ICON
+   ============================================ */
+
+.expand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.expand-icon.expanded {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+
+/* ============================================
+   SUGGESTION DETAILS (Expanded Content)
+   ============================================ */
+
+.suggestion-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  animation: detailsSlideDown 0.3s ease-out;
+}
+
+@keyframes detailsSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   DETAIL ROWS
+   ============================================ */
+
+.details-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+
+.detail-label {
+  min-width: 140px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #98a0b3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  font-size: 12px;
+  color: #e6eef8;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 10px;
+  border-radius: 6px;
+  flex: 1;
+  word-break: break-word;
+  min-width: 100px;
+}
+
+.detail-value.highlight {
+  background: rgba(78, 230, 164, 0.1);
+  color: #4de6a4;
+  border: 1px solid rgba(78, 230, 164, 0.2);
+  font-weight: 600;
+}
+
+/* ============================================
+   CONFIDENCE BAR WRAPPER
+   ============================================ */
+
+.confidence-bar-wrapper {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 4px 0;
+}
+
+.confidence-bar {
+  height: 100%;
+  border-radius: 3px;
+  animation: barFill 0.6s ease-out;
+  box-shadow: 0 0 12px currentColor;
+}
+
+@keyframes barFill {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: var(--bar-width, 100%);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.suggestion-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.action-btn:focus {
+  outline: 2px solid #6ef0ff;
+  outline-offset: -2px;
+}
+
+.action-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Primary Button (Copy Fix) */
+.action-btn.primary {
+  background: linear-gradient(135deg, #4de6a4, #3dd894);
+  color: #041024;
+  border-color: #4de6a4;
+  font-weight: 700;
+}
+
+.action-btn.primary:hover {
+  box-shadow: 0 6px 20px rgba(77, 230, 164, 0.3);
+  background: linear-gradient(135deg, #5df4b5, #4de6a4);
+}
+
+.action-btn.primary:active {
+  box-shadow: 0 2px 8px rgba(77, 230, 164, 0.2);
+}
+
+/* Secondary Button (Mark as Applied) */
+.action-btn.secondary {
+  background: rgba(110, 240, 255, 0.1);
+  color: #6ef0ff;
+  border-color: rgba(110, 240, 255, 0.3);
+}
+
+.action-btn.secondary:hover {
+  background: rgba(110, 240, 255, 0.15);
+  border-color: rgba(110, 240, 255, 0.5);
+  box-shadow: 0 6px 20px rgba(110, 240, 255, 0.2);
+}
+
+.action-btn.secondary:active {
+  box-shadow: 0 2px 8px rgba(110, 240, 255, 0.1);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .suggestion-header {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .confidence-indicator {
+    min-width: 50px;
+    padding: 6px;
+  }
+
+  .confidence-icon {
+    font-size: 12px;
+  }
+
+  .confidence-percent {
+    font-size: 11px;
+  }
+
+  .suggestion-fix {
+    font-size: 13px;
+  }
+
+  .suggestion-issue {
+    font-size: 11px;
+  }
+
+  .suggestion-details {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .details-row {
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .detail-label {
+    min-width: 100px;
+  }
+
+  .suggestion-actions {
+    gap: 6px;
+  }
+
+  .action-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .suggestion-item {
+    border-radius: 8px;
+  }
+
+  .suggestion-header {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .confidence-indicator {
+    min-width: 45px;
+    padding: 5px;
+  }
+
+  .confidence-icon {
+    font-size: 11px;
+  }
+
+  .confidence-percent {
+    font-size: 10px;
+  }
+
+  .suggestion-fix {
+    font-size: 12px;
+  }
+
+  .suggestion-issue {
+    font-size: 10px;
+  }
+
+  .expand-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .suggestion-details {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .details-row {
+    gap: 6px;
+    padding: 4px 0;
+    flex-wrap: wrap;
+  }
+
+  .detail-label {
+    min-width: 80px;
+    font-size: 11px;
+  }
+
+  .detail-value {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .confidence-bar-wrapper {
+    height: 4px;
+    margin: 2px 0;
+  }
+
+  .suggestion-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .action-btn {
+    padding: 8px 10px;
+    font-size: 10px;
+    width: 100%;
+  }
+}
+
+/* ============================================
+   DARK MODE SPECIFIC
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .suggestion-item {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 32, 0.6),
+      rgba(15, 23, 32, 0.4)
+    );
+  }
+
+  .suggestion-item:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 32, 0.8),
+      rgba(15, 23, 32, 0.6)
+    );
+  }
+
+  .suggestion-details {
+    background: rgba(15, 23, 32, 0.3);
+  }
+}
+
+/* ============================================
+   LIGHT MODE SPECIFIC
+   ============================================ */
+
+@media (prefers-color-scheme: light) {
+  .suggestion-item {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.02),
+      rgba(0, 0, 0, 0.01)
+    );
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .suggestion-header {
+    color: #1a1a1a;
+  }
+
+  .suggestion-fix {
+    color: #1a1a1a;
+  }
+
+  .detail-label {
+    color: #666666;
+  }
+
+  .detail-value {
+    background: rgba(0, 0, 0, 0.03);
+    color: #1a1a1a;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY - MOTION PREFERENCES
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .suggestion-item,
+  .suggestion-header,
+  .expand-icon,
+  .confidence-indicator,
+  .suggestion-actions,
+  .action-btn,
+  .suggestion-details {
+    animation: none;
+    transition: none;
+  }
+
+  .expand-icon.expanded {
+    transform: none;
+  }
+
+  .suggestion-header:hover .confidence-indicator {
+    transform: none;
+  }
+
+  .action-btn:hover {
+    transform: none;
+  }
+
+  .confidence-bar {
+    animation: barFillReduced 0.1s ease-out;
+  }
+}
+
+@keyframes barFillReduced {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--bar-width, 100%);
+  }
+}
+
+/* ============================================
+   FOCUS VISIBLE (Keyboard Navigation)
+   ============================================ */
+
+.suggestion-header:focus-visible {
+  outline: 2px solid #6ef0ff;
+  outline-offset: -2px;
+  border-radius: 8px;
+}
+
+.action-btn:focus-visible {
+  outline: 2px solid #6ef0ff;
+  outline-offset: -2px;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .suggestion-item {
+    page-break-inside: avoid;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+
+  .confidence-indicator {
+    background: #f0f0f0;
+    color: black;
+    box-shadow: none;
+  }
+
+  .suggestion-fix {
+    color: black;
+    font-weight: bold;
+  }
+
+  .suggestion-issue {
+    color: #333;
+  }
+
+  .detail-label {
+    color: #666;
+  }
+
+  .detail-value {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+
+  .detail-value.highlight {
+    background: #f0f0f0;
+    color: black;
+  }
+
+  .suggestion-actions {
+    display: none;
+  }
+
+  .expand-icon {
+    display: none;
+  }
+
+  .suggestion-details {
+    display: block;
+    background: white;
+    border-top: 1px solid #ccc;
+  }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: more) {
+  .suggestion-item {
+    border-width: 2px;
+  }
+
+  .confidence-indicator {
+    border: 1px solid currentColor;
+  }
+
+  .suggestion-fix {
+    font-weight: 800;
+  }
+
+  .action-btn {
+    border-width: 2px;
+  }
+}

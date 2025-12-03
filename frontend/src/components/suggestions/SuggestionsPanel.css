@@ -1,0 +1,715 @@
+/* frontend/src/components/suggestions/SuggestionsPanel.css */
+
+/* ============================================
+   MAIN SUGGESTIONS PANEL
+   ============================================ */
+
+.suggestions-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(78, 230, 164, 0.05),
+    rgba(110, 240, 255, 0.02)
+  );
+  border: 1px solid rgba(78, 230, 164, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  animation: panelSlideIn 0.6s ease-out;
+}
+
+@keyframes panelSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   SUGGESTIONS HEADER
+   ============================================ */
+
+.suggestions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(78, 230, 164, 0.1),
+    rgba(110, 240, 255, 0.05)
+  );
+  border-bottom: 1px solid rgba(78, 230, 164, 0.15);
+}
+
+.header-content {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.header-icon {
+  font-size: 28px;
+  animation: lightbulbFlicker 0.6s ease-in-out;
+}
+
+@keyframes lightbulbFlicker {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.header-text h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #4de6a4;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.header-text p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: #98a0b3;
+}
+
+.header-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: rgba(78, 230, 164, 0.1);
+  border: 1px solid rgba(78, 230, 164, 0.3);
+  border-radius: 8px;
+}
+
+.badge-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4de6a4;
+}
+
+.badge-label {
+  font-size: 11px;
+  color: #98a0b3;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   SUGGESTIONS STATS BAR
+   ============================================ */
+
+.suggestions-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #6ef0ff;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #98a0b3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 8px;
+}
+
+/* ============================================
+   SUGGESTIONS CONTAINER
+   ============================================ */
+
+.suggestions-container {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ============================================
+   SUGGESTION GROUP
+   ============================================ */
+
+.suggestion-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid #6ef0ff;
+  border-radius: 6px;
+}
+
+.group-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e6eef8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+
+.group-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(110, 240, 255, 0.2);
+  color: #6ef0ff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ============================================
+   SUGGESTIONS LIST
+   ============================================ */
+
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================
+   SUGGESTION ITEM
+   ============================================ */
+
+.suggestion-item {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: itemSlideIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes itemSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.suggestion-item:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Priority Styling */
+.suggestion-item.priority-high {
+  border-left: 3px solid #4de6a4;
+}
+
+.suggestion-item.priority-medium {
+  border-left: 3px solid #ffa502;
+}
+
+.suggestion-item.priority-low {
+  border-left: 3px solid #ff6b9d;
+}
+
+/* ============================================
+   SUGGESTION HEADER (Item)
+   ============================================ */
+
+.suggestion-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.suggestion-header:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.suggestion-header:focus {
+  outline: 2px solid #6ef0ff;
+  outline-offset: -2px;
+}
+
+/* ============================================
+   CONFIDENCE INDICATOR
+   ============================================ */
+
+.confidence-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 60px;
+  padding: 8px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, currentColor, rgba(255, 255, 255, 0.1));
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.confidence-icon {
+  font-size: 14px;
+}
+
+.confidence-percent {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ============================================
+   SUGGESTION MAIN CONTENT
+   ============================================ */
+
+.suggestion-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suggestion-fix {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e6eef8;
+  line-height: 1.3;
+}
+
+.suggestion-issue {
+  font-size: 12px;
+  color: #98a0b3;
+  line-height: 1.3;
+}
+
+/* ============================================
+   EXPAND ICON
+   ============================================ */
+
+.expand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  opacity: 0.6;
+}
+
+.expand-icon.expanded {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+
+/* ============================================
+   SUGGESTION DETAILS (Expanded)
+   ============================================ */
+
+.suggestion-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  animation: detailsSlideDown 0.3s ease-out;
+}
+
+@keyframes detailsSlideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.details-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.detail-label {
+  min-width: 140px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #98a0b3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  font-size: 12px;
+  color: #e6eef8;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 10px;
+  border-radius: 6px;
+  flex: 1;
+  word-break: break-word;
+}
+
+.detail-value.highlight {
+  background: rgba(78, 230, 164, 0.1);
+  color: #4de6a4;
+  border: 1px solid rgba(78, 230, 164, 0.2);
+  font-weight: 600;
+}
+
+/* ============================================
+   CONFIDENCE BAR
+   ============================================ */
+
+.confidence-bar-wrapper {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.confidence-bar {
+  height: 100%;
+  border-radius: 3px;
+  animation: barFill 0.6s ease-out;
+  box-shadow: 0 0 12px currentColor;
+}
+
+@keyframes barFill {
+  from {
+    width: 0;
+  }
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.suggestion-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #4de6a4, #3dd894);
+  color: #041024;
+  border-color: #4de6a4;
+}
+
+.action-btn.primary:hover {
+  box-shadow: 0 6px 20px rgba(77, 230, 164, 0.3);
+  transform: translateY(-2px);
+}
+
+.action-btn.secondary {
+  background: rgba(110, 240, 255, 0.1);
+  color: #6ef0ff;
+  border-color: rgba(110, 240, 255, 0.3);
+}
+
+.action-btn.secondary:hover {
+  background: rgba(110, 240, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(110, 240, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   SUGGESTIONS FOOTER
+   ============================================ */
+
+.suggestions-footer {
+  padding: 12px 16px;
+  background: rgba(78, 230, 164, 0.05);
+  border-top: 1px solid rgba(78, 230, 164, 0.15);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.footer-content strong {
+  display: block;
+  color: #4de6a4;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-content p {
+  margin: 2px 0 0 0;
+  font-size: 12px;
+  color: #98a0b3;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .suggestions-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header-content {
+    width: 100%;
+  }
+
+  .header-badge {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .suggestion-header {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .suggestion-fix {
+    font-size: 13px;
+  }
+
+  .suggestion-issue {
+    font-size: 11px;
+  }
+
+  .suggestion-details {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .details-row {
+    gap: 8px;
+    padding: 6px 0;
+    flex-wrap: wrap;
+  }
+
+  .detail-label {
+    min-width: 100px;
+  }
+
+  .suggestion-actions {
+    gap: 6px;
+  }
+
+  .action-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .suggestions-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .group-header {
+    padding: 8px 10px;
+  }
+
+  .group-title {
+    font-size: 12px;
+  }
+
+  .suggestion-item {
+    border-radius: 8px;
+  }
+
+  .suggestion-header {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .confidence-indicator {
+    min-width: 50px;
+    padding: 6px;
+  }
+
+  .suggestion-fix {
+    font-size: 12px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .suggestions-actions {
+    flex-direction: column;
+  }
+}
+
+/* ============================================
+   DARK MODE SPECIFIC
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .suggestion-item {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 32, 0.6),
+      rgba(15, 23, 32, 0.4)
+    );
+  }
+
+  .suggestion-item:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 32, 0.8),
+      rgba(15, 23, 32, 0.6)
+    );
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .suggestions-panel,
+  .suggestion-item,
+  .suggestion-header,
+  .expand-icon,
+  .confidence-bar,
+  .action-btn {
+    animation: none;
+    transition: none;
+  }
+
+  .header-icon {
+    animation: none;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .suggestions-panel {
+    page-break-inside: avoid;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+
+  .suggestion-item {
+    page-break-inside: avoid;
+    background: white;
+    border: 1px solid #ccc;
+  }
+
+  .suggestion-details {
+    display: block;
+    background: #f9f9f9;
+  }
+
+  .suggestion-actions {
+    display: none;
+  }
+
+  .header-icon,
+  .footer-icon {
+    display: none;
+  }
+}
