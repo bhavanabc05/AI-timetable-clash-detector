@@ -1,65 +1,210 @@
 /* frontend/src/components/Analytics.css */
 
+/* ============================================
+   ANALYTICS DASHBOARD MAIN
+   ============================================ */
+
 .analytics-dashboard {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  animation: dashboardFadeIn 0.6s ease-out;
+}
+
+@keyframes dashboardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ============================================
-   KPI CARDS GRID
+   SECTION TITLES
+   ============================================ */
+
+.section-title {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e6eef8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title::before {
+  content: "";
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(180deg, #6ef0ff, #9b6bff);
+  border-radius: 2px;
+}
+
+/* ============================================
+   KPI SECTION
+   ============================================ */
+
+.kpi-section {
+  animation: sectionSlideIn 0.6s ease-out;
+}
+
+@keyframes sectionSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   KPI GRID
    ============================================ */
 
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
 }
+
+/* ============================================
+   KPI CARD
+   ============================================ */
 
 .kpi-card {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.005)
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
   );
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-left: 4px solid;
-  border-radius: 10px;
-  padding: 14px;
+  border-radius: 12px;
+  padding: 20px;
   display: flex;
+  flex-direction: column;
   gap: 12px;
-  align-items: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: kpiCardSlide 0.5s ease-out forwards;
+  opacity: 0;
+  cursor: pointer;
+}
+
+@keyframes kpiCardSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kpi-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.kpi-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.kpi-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.kpi-card:nth-child(4) {
+  animation-delay: 0.4s;
 }
 
 .kpi-card:hover {
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 40px rgba(110, 240, 255, 0.05);
+  transform: translateY(-4px);
+}
+
+/* ============================================
+   KPI CARD CONTENT
+   ============================================ */
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .kpi-icon {
-  font-size: 32px;
-  flex-shrink: 0;
-}
-
-.kpi-content {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  animation: iconPulse 2s ease-in-out infinite;
 }
 
-.kpi-value {
-  font-size: 24px;
-  font-weight: 700;
-  color: #e6eef8;
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .kpi-title {
   font-size: 12px;
+  font-weight: 600;
   color: #98a0b3;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.kpi-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e6eef8;
+  line-height: 1;
+}
+
+.kpi-description {
+  font-size: 12px;
+  color: #98a0b3;
+  line-height: 1.4;
+}
+
+.kpi-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #98a0b3;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  width: fit-content;
+}
+
+/* ============================================
+   CHARTS SECTION
+   ============================================ */
+
+.charts-section {
+  animation: sectionSlideIn 0.6s ease-out 0.2s both;
 }
 
 /* ============================================
@@ -68,10 +213,14 @@
 
 .charts-grid {
   display: grid;
-  /* Enforce 2 columns minimum on larger screens */
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 16px;
+  grid-auto-rows: auto;
 }
+
+/* ============================================
+   CHART PANEL
+   ============================================ */
 
 .chart-panel {
   background: linear-gradient(
@@ -80,22 +229,99 @@
     rgba(255, 255, 255, 0.01)
   );
   border: 1px solid rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 16px;
   overflow: hidden;
+  transition: all 0.3s ease;
+  animation: chartPanelFade 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes chartPanelFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-panel:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.chart-panel:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.chart-panel:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.chart-panel:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.chart-panel:nth-child(5) {
+  animation-delay: 0.7s;
+}
+
+.chart-panel:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.025),
+    rgba(255, 255, 255, 0.015)
+  );
 }
 
 .chart-panel.full-width {
   grid-column: 1 / -1;
 }
 
+/* ============================================
+   CHART HEADER
+   ============================================ */
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chart-icon {
+  font-size: 18px;
+  animation: chartIconBounce 2s ease-in-out infinite;
+}
+
+@keyframes chartIconBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 .chart-title {
-  margin: 0 0 14px 0;
+  margin: 0;
   font-size: 14px;
   font-weight: 700;
   color: #e6eef8;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* ============================================
+   CHART BODY
+   ============================================ */
+
+.chart-body {
+  width: 100%;
+  height: auto;
 }
 
 /* ============================================
@@ -112,11 +338,12 @@
 
 .recharts-text {
   fill: #e6eef8 !important;
+  font-size: 12px !important;
 }
 
 .recharts-cartesian-axis-tick text {
   fill: #98a0b3 !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
 }
 
 .recharts-legend-wrapper {
@@ -125,42 +352,87 @@
 
 .recharts-legend-item-text {
   color: #98a0b3 !important;
+  font-size: 12px !important;
 }
 
 .recharts-pie-label {
   fill: #e6eef8 !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
   font-weight: 600;
 }
-
-.recharts-default-tooltip {
-  outline: none !important;
-}
-
-/* ============================================
-   TOOLTIP STYLING
-   ============================================ */
 
 .recharts-tooltip-wrapper {
   outline: none !important;
 }
 
-.custom-tooltip {
-  background: rgba(15, 23, 32, 0.95) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px;
-  padding: 8px 12px;
-  color: #e6eef8;
-  font-size: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(78, 230, 164, 0.05),
+    rgba(110, 240, 255, 0.02)
+  );
+  border: 1px solid rgba(78, 230, 164, 0.1);
+  border-radius: 12px;
+  animation: emptyStateFadeIn 0.6s ease-out;
+}
+
+@keyframes emptyStateFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  animation: emptyIconSpin 3s linear infinite;
+}
+
+@keyframes emptyIconSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(10deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.empty-state h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4de6a4;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 14px;
+  color: #98a0b3;
 }
 
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 
-/* Changed from 1200px to 900px to allow 2-column view on standard laptops */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .charts-grid {
     grid-template-columns: 1fr;
   }
@@ -170,25 +442,288 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .analytics-dashboard {
+    gap: 20px;
+  }
+
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .kpi-card {
-    padding: 10px;
-    gap: 8px;
+    padding: 16px;
+    gap: 10px;
   }
 
   .kpi-icon {
-    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 
   .kpi-value {
-    font-size: 20px;
+    font-size: 28px;
   }
 
   .chart-panel {
     padding: 12px;
+  }
+
+  .chart-header {
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .chart-title {
+    font-size: 13px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-dashboard {
+    gap: 16px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .kpi-card {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .kpi-header {
+    gap: 10px;
+  }
+
+  .kpi-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .kpi-title {
+    font-size: 11px;
+  }
+
+  .kpi-value {
+    font-size: 24px;
+  }
+
+  .kpi-description {
+    font-size: 11px;
+  }
+
+  .chart-panel {
+    padding: 10px;
+  }
+
+  .chart-header {
+    margin-bottom: 10px;
+    gap: 6px;
+  }
+
+  .chart-icon {
+    font-size: 16px;
+  }
+
+  .chart-title {
+    font-size: 12px;
+  }
+
+  .section-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .empty-state {
+    padding: 50px 20px;
+  }
+
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+
+  .empty-state h3 {
+    font-size: 16px;
+  }
+
+  .empty-state p {
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .kpi-card {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 32, 0.6),
+      rgba(15, 23, 32, 0.4)
+    );
+  }
+
+  .kpi-card:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 32, 0.8),
+      rgba(15, 23, 32, 0.6)
+    );
+  }
+
+  .chart-panel {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 32, 0.8),
+      rgba(15, 23, 32, 0.6)
+    );
+  }
+
+  .chart-panel:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 32, 0.9),
+      rgba(15, 23, 32, 0.7)
+    );
+  }
+}
+
+/* ============================================
+   LIGHT MODE
+   ============================================ */
+
+@media (prefers-color-scheme: light) {
+  .kpi-card {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.02),
+      rgba(0, 0, 0, 0.01)
+    );
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .chart-panel {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02),
+      rgba(0, 0, 0, 0.01)
+    );
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .section-title {
+    color: #1a1a1a;
+  }
+
+  .kpi-value {
+    color: #1a1a1a;
+  }
+
+  .chart-title {
+    color: #1a1a1a;
+  }
+
+  .recharts-text {
+    fill: #666666 !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .analytics-dashboard,
+  .kpi-section,
+  .kpi-card,
+  .chart-panel,
+  .empty-state,
+  .kpi-icon,
+  .chart-icon,
+  .empty-icon {
+    animation: none;
+  }
+
+  .kpi-card:hover,
+  .chart-panel:hover {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .kpi-card {
+    border-width: 2px;
+  }
+
+  .chart-panel {
+    border-width: 2px;
+  }
+
+  .kpi-value {
+    font-weight: 800;
+  }
+
+  .chart-title {
+    font-weight: 800;
+  }
+
+  .section-title {
+    font-weight: 800;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .analytics-dashboard {
+    gap: 20px;
+  }
+
+  .kpi-card {
+    page-break-inside: avoid;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+
+  .chart-panel {
+    page-break-inside: avoid;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+
+  .kpi-icon {
+    background: #f0f0f0;
+    box-shadow: none;
+  }
+
+  .kpi-value {
+    color: black;
+  }
+
+  .chart-title {
+    color: black;
+  }
+
+  .empty-state {
+    background: white;
+    border: 1px solid #ccc;
+    color: black;
   }
 }
